@@ -1,5 +1,6 @@
 package com.microservices.demo.twitter.to.kafka.service.config;
 
+import com.microservices.demo.twitter.to.kafka.service.runner.StreamRunner;
 import lombok.Data;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Configuration;
@@ -16,4 +17,6 @@ public class TwitterToKafkaServiceConfigData {
     private Long mockSleepMs;
     private Integer mockMinTweetLength;
     private Integer mockMaxTweetLength;
+
+
 }
