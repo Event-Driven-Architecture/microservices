@@ -1,4 +1,4 @@
-package com.microservice.demo.config;
+package com.microservices.demo.config;
 
 /**
  * @PROJECT microservices
