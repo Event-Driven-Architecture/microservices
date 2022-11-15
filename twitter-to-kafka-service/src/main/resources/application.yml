@@ -26,3 +26,36 @@ kafka-config:
     - twitter-topic
   num-of-partitions: 3
   replication-factor: 3
+
+
+kafka-producer-config:
+  # Represent the key to serialize tweets
+  key-serializer-class: org.apache.kafka.common.serialization.LongSerializer
+  value-serializer-class: io.confluent.kafka.serializers.KafkaAvroSerializer
+  # Snappy arranges compression ratio for higher compress
+  compression-type: snappy
+  # Acks (all) allows to get acknowledgement for all replicas
+  # to be more resilient
+  acsk: all
+  # batch size (16 Terabytes) is for tune higher throughput(débit)
+  batch-size: 16384
+  # facto allows to multiplply batch size (16384 * 100)
+  # to have more batching and get high throughput
+  batch-size-boost-factor: 100
+  # linger add a delay on producer in case of light load
+  linger-ms: 5
+  request-timeout-ms: 60000
+  # Producer will retry 5 times in case of error
+  retry-count: 5
+
+
+  #---------------------------------INFO OF PRODUCER-----------------------------------------------------------
+  # (Note 1) To increase throughput we can increase the batched data in request.
+  # This can be done by increasing the batch size, adding a compression as batching is done after compression,
+  # and increase the linger ms to add a delay on producer client to wait more and send more data at once.
+  #
+  #
+  # (Note 2) Above params means that after 5ms(linger-ms) if 16 terabytes(batch-size) of records
+  # (per partition) is not added to the output buffer then
+  # what is there will be compressed and sent to the Kafka broker.
+  #----------------------------------------------------------------------------------------------------------
