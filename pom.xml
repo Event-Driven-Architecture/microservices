@@ -6,6 +6,9 @@
     <module>twitter-to-kafka-service</module>
     <module>app-config-data</module>
     <module>kafka</module>
+    <module>kafka/kafka-model</module>
+    <module>kafka/kafka-admin</module>
+    <module>kafka/kafka-producer</module>
     <module>common-config</module>
   </modules>
   <parent>
@@ -35,12 +38,12 @@
   </properties>
 
 <!--  To be able to download avro-serializer dependency from confluent-->
-<repositories>
-  <repository>
-    <id>confluent</id>
-    <url>https://packages.confluent.io/maven/</url>
-  </repository>
-</repositories>
+  <repositories>
+    <repository>
+      <id>confluent</id>
+      <url>https://packages.confluent.io/maven/</url>
+    </repository>
+  </repositories>
   <dependencyManagement>
     <dependencies>
       <dependency>
@@ -106,7 +109,6 @@
         <artifactId>spring-boot-starter-webflux</artifactId>
         <version>${spring-webflux.version}</version>
       </dependency>
-
 
     </dependencies>
   </dependencyManagement>
