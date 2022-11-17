@@ -153,7 +153,7 @@ public class KafkaAdminClient {
   }
 
   private Collection<TopicListing> doGetTopics(RetryContext retryContext) throws ExecutionException, InterruptedException {
-    LOG.info(" Reading kafka topic {}, attempt {}", kafkaConfigData.getTopicNamesToCreate().toArray(), retryContext.getRetryCount());
+    LOG.info(" Reading kafka topics {}, attempt {}", kafkaConfigData.getTopicNamesToCreate().toArray(), retryContext.getRetryCount());
     Collection<TopicListing> topics = adminClient.listTopics().listings().get();
     if(topics != null){
       topics.forEach(topic -> LOG.debug("Topic with name {}", topic.name()));
