@@ -21,7 +21,7 @@ import java.util.Random;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ThreadLocalRandom;
 
-@Component
+@Service
 @ConditionalOnProperty(name = "twitter-to-kafka-service.enable-mock-tweets", havingValue = "true")
 public class MockKafkaStreamRunner implements StreamRunner {
 

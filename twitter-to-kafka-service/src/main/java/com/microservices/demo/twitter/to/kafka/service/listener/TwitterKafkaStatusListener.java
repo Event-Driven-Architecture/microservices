@@ -1,5 +1,10 @@
 package com.microservices.demo.twitter.to.kafka.service.listener;
 
+import com.microservices.demo.config.KafkaConfigData;
+import com.microservices.demo.kafka.avro.model.TwitterAvroModel;
+import com.microservices.demo.kafka.producer.config.KafkaProducerConfig;
+import com.microservices.demo.kafka.producer.config.service.KafkaProducer;
+import com.microservices.demo.twitter.to.kafka.service.transformer.TwitterStatusToAvroTransformer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
@@ -11,8 +16,25 @@ public class TwitterKafkaStatusListener extends StatusAdapter {
 
     private static final Logger LOG = LoggerFactory.getLogger(TwitterKafkaStatusListener.class);
 
-    @Override
+    private final KafkaConfigData kafkaConfigData;
+    private final KafkaProducer<Long, TwitterAvroModel> kafkaProducer;
+    private final TwitterStatusToAvroTransformer transformer;
+
+  public TwitterKafkaStatusListener(KafkaConfigData kafkaConfigData, KafkaProducer<Long, TwitterAvroModel> kafkaProducer, TwitterStatusToAvroTransformer transformer) {
+    this.kafkaConfigData = kafkaConfigData;
+    this.kafkaProducer = kafkaProducer;
+    this.transformer = transformer;
+  }
+
+  @Override
     public void onStatus(Status status) {
         LOG.info("Twitter status with text {}", status.getText());
+        TwitterAvroModel twitterAvroModel = transformer.getTwitterAvroModelFromStatus(status);
+
+        // twitterAvroModel.getId() => Is the kafka partition
+        // key allowing to set the target partition for a message
+
+        // twitterAvroModel => Is the message to send
+        kafkaProducer.send(kafkaConfigData.getTopicName(), twitterAvroModel.getId(), twitterAvroModel);
     }
 }
