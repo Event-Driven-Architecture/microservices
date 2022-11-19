@@ -1,0 +1,11 @@
+server:
+  port: 8888
+
+# To see through the logs, config server activities
+# DEBUG => Allows to see all the details of config server in the log output
+# Logging level => Can override logback logging (logback.xml) properties in application config
+logging:
+  level:
+    ROOT: INFO
+    org.spring.framework.cloud.config: DEBUG
+

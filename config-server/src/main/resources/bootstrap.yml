@@ -1,0 +1,21 @@
+# Required in case of loading configuration in bootstrap phase which has priority on application.yml
+# because config server need to use bootstrap.yml first to be connected to git config repository
+# to get all config data
+#-----------------------------------//
+# config server uri: for high availability and repository caching, it uses:
+# - ssh with shared file system (local)
+# - http with remote git repository
+#-----------------------------------//
+# clone on start: Is to clone the config server repository on startup
+#-----------------------------------//
+# fail fast: Means that is the config server cannot reach the config server repository, it will stop immediately
+spring:
+  application:
+    name: config-server
+  cloud:
+    config:
+      server:
+        git:
+          uri: file://Users/Elimane/SPRING-KAFKA/microservices/config-server-repository
+          clone-on-start: true
+      fail-fast: true
