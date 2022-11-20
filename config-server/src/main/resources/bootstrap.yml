@@ -9,6 +9,8 @@
 # clone on start: Is to clone the config server repository on startup
 #-----------------------------------//
 # fail fast: Means that is the config server cannot reach the config server repository, it will stop immediately
+#-----------------------------------//
+# refresh rate : Meaning the config server will fetch updated configuration from the Git repo every time it is requested
 spring:
   application:
     name: config-server
@@ -18,4 +20,5 @@ spring:
         git:
           uri: file://Users/Elimane/SPRING-KAFKA/microservices/config-server-repository
           clone-on-start: true
-      fail-fast: true
+          refresh-rate: 0
+    fail-fast: true
