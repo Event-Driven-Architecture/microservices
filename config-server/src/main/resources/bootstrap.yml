@@ -18,7 +18,15 @@ spring:
     config:
       server:
         git:
-          uri: file://Users/Elimane/SPRING-KAFKA/microservices/config-server-repository
+          uri: https://github.com/Event-Driven-Architecture/config-server-repository_.git
           clone-on-start: true
           refresh-rate: 0
+          default-label: main
+          username: Elfn
+          password: #*******
     fail-fast: true
+  security:
+    user:
+      name: elsior_spring
+      password: elsior_pwd!
+
