@@ -18,7 +18,29 @@ spring:
     config:
       server:
         git:
-          uri: file://Users/Elimane/SPRING-KAFKA/microservices/config-server-repository
+          uri: https://github.com/Event-Driven-Architecture/config-server-repository_.git
           clone-on-start: true
           refresh-rate: 0
+          default-label: main
+          username: Elfn
+          password: #*******
     fail-fast: true
+  security:
+    user:
+      name: elsior_spring
+      password: ENC(Qkhm50eeJmte7iAWQiZAcbg40JU3S2SUwUKPREW86ksGfXoBh0vcut8yzlqXisHT)
+
+jasypt:
+  encryptor:
+    password: jasypt_pwd!
+#    algorithm: PBEWithMD5AndDES_256
+#    iv-generator-classname: org.jasypt.iv.NoIvGenerator
+# Command to export jasypt password in environment variable => export JASYPT_ENCRYPTOR_PASSWORD='pwd'
+# And check with echo command => echo $JASYPT_ENCRYPTOR_PASSWORD
+# We can make it permanent in => ~/.bash_profile
+# It is important to make it permanent because without it the app will not start
+
+# or
+
+# Add it into IntelliJ, in Run/Debug configuration and fill Program arguments field
+
