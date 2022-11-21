@@ -6,5 +6,11 @@ spring:
     active: twitter_to_kafka
   cloud:
     config:
+      enabled: true
       name: twitter-to-kafka-service,config-client
-     # uri: http://localhost:8888
+      uri: http://localhost:8888
+      username: elsior_spring
+      password: ENC(Qkhm50eeJmte7iAWQiZAcbg40JU3S2SUwUKPREW86ksGfXoBh0vcut8yzlqXisHT)
+
+# Url to see all config data contained by config server via "twitter_to_kafka" environment:
+# http://localhost:8888/config-client/twitter_to_kafka

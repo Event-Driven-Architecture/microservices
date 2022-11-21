@@ -1,0 +1,12 @@
+spring:
+  application:
+    name: kafka-to-elastic-service
+  profiles:
+    active: kafka-to-elastic
+  cloud:
+    config:
+      enabled: true
+      name: twitter-to-kafka-service,config-client
+      uri: http://localhost:8888
+      username: elsior_spring
+      password: ENC(Qkhm50eeJmte7iAWQiZAcbg40JU3S2SUwUKPREW86ksGfXoBh0vcut8yzlqXisHT)
